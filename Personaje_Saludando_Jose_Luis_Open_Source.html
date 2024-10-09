@@ -4,22 +4,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
-    
+
     <script>
       // WebXR requires HTTPS, so the site doesn't work if someone manually enters
       // the URL and ends up using HTTP. To work around this, force redirect from
       // http to https for non-localhost addresses.
       if (window.location.protocol == "http:" &&
-          window.location.hostname != "localhost" && 
+          window.location.hostname != "localhost" &&
           window.location.hostname != "127.0.0.1" &&
           window.location.hostname != "[::1]") {
-        window.location = window.location.href.replace('http:', 'https:');        
+        window.location = window.location.href.replace('http:', 'https:');
       }
-    </script>    
-    
+    </script>
+
     <!-- import the webpage's javascript files -->
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
@@ -29,7 +29,7 @@
       // Define a few custom components useful for AR mode. While these are somewhat reusable,
       // I recommend checking if there are officially supported alternatives before copying
       // these into new projects.
-    
+
       // See also https://github.com/aframevr/aframe/pull/4356
       AFRAME.registerComponent('hide-in-ar-mode', {
         // Set this object invisible while in AR mode.
@@ -45,7 +45,7 @@
           });
         }
       });
-      
+
       AFRAME.registerComponent('ar-shadows', {
         // Swap an object's material to a transparent shadows-only material while
         // in AR mode. Intended for use with a ground plane. The object is also
@@ -72,9 +72,9 @@
             if (!this.wasVisible) this.el.setAttribute('visible', false);
           });
         }
-      });    
+      });
   </script>
-  </head>  
+  </head>
   <body>
 
     <a-scene>
@@ -84,20 +84,21 @@
              Model license: CC Attribution -->
         <a-asset-item id="yo_saludando" src="yo_saludando_002.glb" response-type="arraybuffer"></a-asset-item>
       </a-assets>
-      
+
       <a-camera position="0 1.2 -1.6"></a-camera>
-      
+      <!-- <a-camera rotation="0 1 0"></a-camera> -->
+
       <!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
       <a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
                 hide-in-ar-mode></a-entity>
-      
+
       <a-entity id="personaje" position="-1 0 -3" scale="0.5 0.5 0.5">
         <a-entity position="0 0.5 0" rotation="0 55 0"
                   gltf-model="#yo_saludando"
                   animation-mixer
                   shadow="cast: true; receive: false"></a-entity>
-      </a-entity>  
-      
+      </a-entity>
+
       <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
       <a-light type="directional"
                light="castShadow: true;
@@ -120,9 +121,9 @@
 
     <div id="text">
       <h1>A-Frame Spinosaurus for VR/AR</h1>
-    
+
       <p>
-        Model: <a href="https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7">Spinosaurus</a> by 
+        Model: <a href="https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7">Spinosaurus</a> by
         <a href="https://sketchfab.com/VapTor">Vaptor-Studio</a>.
       </p>
       <p>
@@ -130,13 +131,13 @@
         <button id="btn_half">1/2</button>
         <button id="btn_quarter">1/4</button>
       </p>
-      
+
       <p>
         This requires browser support for WebXR's AR mode, for example an
         <a href="https://developers.google.com/ar/discover/supported-devices">ARCore-compatible</a>
         Android phone with Chrome version 81 or higher.
       </p>
-      
+
       <p>
         Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
       </p>
